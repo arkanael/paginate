@@ -37,12 +37,12 @@ header{
     margin: 32px auto;
 }
 
-#paginate .item{
+#paginate .list .item{
     border-bottom: 1px solid hsl(32, 98%, 12%);
     padding: 16px 32px;
 }
 
-#paginate .item:hover{
+#paginate .list .item:hover{
     background-color: rgba(255, 255, 255, 0.04);
 }
 
