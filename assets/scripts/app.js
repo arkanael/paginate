@@ -60,6 +60,7 @@ const controls = {
         html.get('.first').addEventListener('click', () => {
             controls.goTo(1);
             update();
+            console.log('Entrou')
         });
 
         html.get('.last').addEventListener('click', () => {
@@ -83,7 +84,11 @@ function update() {
     console.log(state.page);
 };
 
-controls.createListners();
+function init(){
+    controls.createListners();
+}
+
+init();
 
 console.log(state.page);
 controls.goTo(-22);
