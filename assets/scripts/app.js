@@ -1,24 +1,5 @@
-function populateList() {
-    const data = Array.from({ length: 100 })
-        .map((_, i) => `<div class="item">Item ${(i + 1)}</div>`);
-
-    // for(let i = 0; i < 100; i++ ){
-    //     data.push(`<div class="item">Item ${(i + 1)}</div>`);
-    // }
-
-    const list = document.querySelector('#paginate .list');
-    list.innerHTML = data.join("");
-
-    return data;
-}
-
-const data = populateList();
-
-const html = {
-    get(element) {
-        return document.querySelector(element);
-    }
-}
+const data = Array.from({ length: 100 })
+    .map((_, i) => `Item ${(i + 1)}`);
 
 let perPage = 5;
 const state = {
@@ -27,6 +8,11 @@ const state = {
     totalPage: Math.ceil(data.length / perPage)
 }
 
+const html = {
+    get(element) {
+        return document.querySelector(element);
+    }
+}
 
 const controls = {
     next() {
@@ -80,11 +66,32 @@ const controls = {
     }
 }
 
+const list = {
+    create(item){
+        const div = document.createElement('div');
+        div.classList.add('item');
+        div.innerHTML = item;
+        
+        html.get('.list').appendChild(div);
+    },
+    update(){
+        html.get(`.list`).innerHTML = "";
+        let page = state.page - 1;
+        let start = page * state.perPage;
+        let end = start + state.perPage;
+
+        const paginatedItems = data.slice(start, end);
+
+        paginatedItems.forEach(list.create)
+    }
+}
+
 function update() {
-    console.log(state.page);
+    list.update();
 };
 
 function init(){
+    list.update();
     controls.createListners();
 }
 
