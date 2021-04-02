@@ -30,10 +30,28 @@ const controls = {
             state.page--;
         }
     },
-    prev() { },
-    goTo() { }
+    prev() {
+        state.page--;
+        const firstPage = state.page < 1;
+        if(firstPage){
+            state.page++;
+        }
+     },
+    goTo(page) {
+        state.page = page;
+        const lasttPage = state.page > state.totalPage;
+        const firstPage = state.page < 1;
+
+        if(lasttPage){
+            state.page = state.totalPage;
+        }
+
+        if(firstPage){
+            state.page = 1;
+        }
+     }
 }
 
-console.log(state.totalPage);
-controls.next(state.page);
-console.log(state.totalPage);
+console.log(state.page);
+controls.goTo(-22);
+console.log(state.page + " de " + state.totalPage);
