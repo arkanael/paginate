@@ -14,6 +14,12 @@ function populateList() {
 
 const data = populateList();
 
+const html = {
+    get(element) {
+        return document.querySelector(element);
+    }
+}
+
 let perPage = 5;
 const state = {
     page: 1,
@@ -33,24 +39,51 @@ const controls = {
     prev() {
         state.page--;
         const firstPage = state.page < 1;
-        if(firstPage){
+        if (firstPage) {
             state.page++;
         }
-     },
+    },
     goTo(page) {
         state.page = page;
         const lasttPage = state.page > state.totalPage;
         const firstPage = state.page < 1;
 
-        if(lasttPage){
+        if (lasttPage) {
             state.page = state.totalPage;
         }
 
-        if(firstPage){
+        if (firstPage) {
             state.page = 1;
         }
-     }
+    },
+    createListners() {
+        html.get('.first').addEventListener('click', () => {
+            controls.goTo(1);
+            update();
+        });
+
+        html.get('.last').addEventListener('click', () => {
+            controls.goTo(state.totalPage);
+            update();
+        });
+
+        html.get('.next').addEventListener('click', () => {
+            controls.next();
+            update();
+        });
+
+        html.get('.prev').addEventListener('click', () => {
+            controls.prev();
+            update();
+        });
+    }
 }
+
+function update() {
+    console.log(state.page);
+};
+
+controls.createListners();
 
 console.log(state.page);
 controls.goTo(-22);
