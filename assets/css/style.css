@@ -46,13 +46,13 @@ header{
     background-color: rgba(255, 255, 255, 0.04);
 }
 
-#paginate .controls{
+#paginate .pagination{
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#paginate .controls div{
+#paginate .pagination div{
     cursor: pointer;
      /* border: 1px solid #eee; */
      display: flex;
@@ -61,13 +61,13 @@ header{
      font-size: 14;
 }
 
-#paginate .controls div:not(.numbers),
-#paginate .controls div.numbers div{
+#paginate .pagination div:not(.numbers),
+#paginate .pagination div.numbers div{
     width: 40px;
     height: 40px;
 }
 
-#paginate .controls div.numbers div:hover,
-#paginate .controls div.numbers div.active {
+#paginate .pagination div.numbers div:hover,
+#paginate .pagination div.numbers div.active {
     color: var(--primary);
 }
